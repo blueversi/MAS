@@ -20,24 +20,44 @@ public class Terrarium extends ObjectPlusPlus implements Serializable {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setX(int x) throws Exception {
+
+        if(x > Terrarium.minX) {
+
+            this.x = x;
+        } else {
+            throw new Exception("Wartość X (szerokość) musi być większa niż " + Terrarium.minX);
+        }
+
     }
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setY(int y) throws Exception {
+
+        if(y > Terrarium.minY) {
+
+            this.y = y;
+        } else {
+            throw new Exception("Wartość Y (wysokość) musi być większa niż " + Terrarium.minY);
+        }
+
     }
 
     public int getZ() {
         return z;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public void setZ(int z) throws Exception {
+
+        if(z > Terrarium.minZ) {
+
+            this.z = z;
+        } else {
+            throw new Exception("Wartość Y (głębokość) musi być większa niż: " + Terrarium.minZ);
+        }
     }
 
     @Override

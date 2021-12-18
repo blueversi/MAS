@@ -12,18 +12,47 @@ Projekt MP4 - Ograniczenia
  */
     public static void main(String args[]) throws Exception {
 
+        //stworzenie instancji niezbednych do prezentacji
         Ptasznik p1 = new Ptasznik("PTSZ01", "Brachypelma Hamorii", 4);
+        Ryba r1 = new Ryba("Złota rybka");
+        Terrarium terrarium = new Terrarium(30,30,30);
+    /*
+       Atrybut Dynamiczny Wylinka ptasznika
+       Ptasznik wraz z czasem linieje,
+       w systemie pamiętamy numer wylinki danego ptasznika jednak nie pozwalamy
+       by był on mniejszy niż poprzedni gdyż jest to niemożliwe
+    */
+
+        wstawEntery(1, "Atrybut Dynamiczny Wylinka ptasznika\n\n" +
+                "Ptasznik wraz z czasem linieje,\n" +
+                "w systemie pamiętamy numer wylinki danego ptasznika jednak nie pozwalamy\n" +
+                "by był on mniejszy niż poprzedni gdyż jest to niemożliwe");
         p1.setNumerWylinki(5);
-        System.out.println(p1);
         try {
             p1.setNumerWylinki(4);
         } catch (Exception e) {
-            wstawEntery(1, "-----------------------");
-            wstawEntery(1,"Przechywcono wyjątek o następującej treści: ");
-            wstawEntery(1);
-            System.out.println(e);
-            wstawEntery(1, "-----------------------");
+            przechwycWyjatek(e);
         }
+
+        /*
+        Atrybut Statyczny rozmiar terrarium
+        Zakładamy, że ze względów zdrowia ptaszników, terrarium nie może być
+        mniejsze niż nasze stałe wartości. W naszym przypadku tyczy się to
+        x(szerokości), y(wysokości) oraz z(głębokości) i przyjmujemy te
+        minimalną wartość jako 30.
+         */
+
+        wstawEntery(1, "Atrybut Statyczny rozmiar terrarium\n\n" +
+                "Zakładamy, że ze względów zdrowia ptaszników, terrarium nie może być\n" +
+                "mniejsze niż nasze stałe wartości. W naszym przypadku tyczy się to\n" +
+                "x(szerokości), y(wysokości) oraz z(głębokości) i przyjmujemy te\n" +
+                "minimalną wartość jako 30.");
+        try {
+            terrarium.setX(2);
+        } catch (Exception e) {
+            przechwycWyjatek(e);
+        }
+
 
 
         /*
@@ -42,6 +71,14 @@ Projekt MP4 - Ograniczenia
 
 
     //Poniżej metody pomocnicze
+    public static void przechwycWyjatek( Exception e) {
+        wstawEntery(1, "-----------------------");
+        wstawEntery(1,"Przechywcono wyjątek o następującej treści: ");
+        wstawEntery(1);
+        System.out.println(e);
+        wstawEntery(1, "-----------------------");
+    }
+
 
     public static void wstawEntery(int liczbaEnterów) {
         for(int i = 0; i<=liczbaEnterów; i++){
@@ -60,5 +97,6 @@ Projekt MP4 - Ograniczenia
     public static void komunikat( String komunikat) {
         System.out.println(komunikat);
     }
+
 
 }
