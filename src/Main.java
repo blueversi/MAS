@@ -144,7 +144,36 @@ Projekt MP4 - Ograniczenia
         wstawEntery(1);
         Karmowka.wyswietlKarmowke();
 
-//-------------------------------------------------
+
+    /*
+       Ograniczenie History - Klasa pośrednicząca karmienie
+       Ogarniczenie History realizuje z pomocą klasy pośredniczącej Karmienie
+       i jej asocjacjami binarnymi z klasa Ptasznik i Karmowka. History ze względu
+       na czasowy aspekt jakim jest data karmienia.
+    */
+
+        wstawEntery(1, " Ograniczenie History - Klasa pośrednicząca karmienie\n\n" +
+                "Ogarniczenie History realizuje z pomocą klasy pośredniczącej Karmienie\n" +
+                "i jej asocjacjami binarnymi z klasa Ptasznik i Karmowka. History ze względu\n" +
+                "na czasowy aspekt jakim jest data karmienia. ");
+
+        Karmienie karmieni1 = new Karmienie(LocalDate.now(), ((int)(Math.random() * 10)));
+        Karmienie karmieni2 = new Karmienie(LocalDate.now(), ((int)(Math.random() * 10)));
+        Karmienie karmieni3 = new Karmienie(LocalDate.now(), ((int)(Math.random() * 10)));
+
+        karmieni1.addLink("Ptasznik", "Karmienie", p1);
+        karmieni1.addLink("Karmowka", "Karmienie", k1);
+        karmieni2.addLink("Ptasznik", "Karmienie", p1);
+        karmieni2.addLink("Karmowka", "Karmienie", k1);
+        karmieni3.addLink("Ptasznik", "Karmienie", p2);
+        karmieni3.addLink("Karmowka", "Karmienie", k2);
+
+        wstawEntery(1, "Wyswietlamy karmienia jakie zaszły dla Ptasznika p1");
+        p1.showLinks("Karmienie", System.out);
+
+        wstawEntery(1, "Wyswietlamy karmienia jakie zaszły dla Karmowki k2");
+        k2.showLinks("Karmienie", System.out);
+
 
 
     /*
