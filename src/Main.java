@@ -6,16 +6,10 @@ public class Main {
 //    public static final String PTASZNIKI_DIR = "dane_ptasznikow.ser";
 /*
 Projekt MP4 - Ograniczenia
-
-
-
  */
     public static void main(String args[]) throws Exception {
 
-        //stworzenie instancji niezbednych do prezentacji
         Ptasznik p1 = new Ptasznik("PTSZ01", "Brachypelma Hamorii", 4);
-        Ryba r1 = new Ryba("Złota rybka");
-        Terrarium terrarium = new Terrarium(30,30,30);
     /*
        Atrybut Dynamiczny Wylinka ptasznika
        Ptasznik wraz z czasem linieje,
@@ -34,25 +28,50 @@ Projekt MP4 - Ograniczenia
             przechwycWyjatek(e);
         }
 
-        /*
+    /*
         Atrybut Statyczny rozmiar terrarium
         Zakładamy, że ze względów zdrowia ptaszników, terrarium nie może być
         mniejsze niż nasze stałe wartości. W naszym przypadku tyczy się to
         x(szerokości), y(wysokości) oraz z(głębokości) i przyjmujemy te
         minimalną wartość jako 30.
-         */
+    */
+
 
         wstawEntery(1, "Atrybut Statyczny rozmiar terrarium\n\n" +
                 "Zakładamy, że ze względów zdrowia ptaszników, terrarium nie może być\n" +
                 "mniejsze niż nasze stałe wartości. W naszym przypadku tyczy się to\n" +
                 "x(szerokości), y(wysokości) oraz z(głębokości) i przyjmujemy te\n" +
                 "minimalną wartość jako 30.");
+
+        Terrarium terrarium = new Terrarium(30,30,30);
+
         try {
             terrarium.setX(2);
         } catch (Exception e) {
             przechwycWyjatek(e);
         }
+    /*
+       Atrybut Unique - Identyfikator Ptasznika
+       Każdy ptasznik musi mieć swój unikalny identyfikator. W tym celu
+       stworzono atrybut klasowy typu SET przechowujący wszystkie
+       identyfikatory obecnie istniejących w sytemie ptaszników.
+       Próba utworzenia ptasznika z takim samym identyfikatorem
+       lub nadanie takiego samego idntyfikatora spowoduje wyjątek.
+    */
+        wstawEntery(1, "Atrybut Unique - Identyfikator Ptasznika\n" +
+                "Każdy ptasznik musi mieć swój unikalny identyfikator. W tym celu\n" +
+                "stworzono atrybut klasowy typu SET przechowujący wszystkie\n" +
+                "identyfikatory obecnie istniejących w sytemie ptaszników.\n" +
+                "Próba utworzenia ptasznika z takim samym identyfikatorem\n" +
+                "lub nadanie takiego samego idntyfikatora spowoduje wyjątek.");
 
+        Ptasznik p2 = new Ptasznik("PTSZ02", "Chilobrachys Sp. Electric Blue", 2);
+
+        try {
+            Ptasznik p3 = new Ptasznik("PTSZ02", "Nhandu Chromatus", 8);
+        } catch (Exception e) {
+            przechwycWyjatek(e);
+        }
 
 
         /*

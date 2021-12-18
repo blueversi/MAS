@@ -1,10 +1,7 @@
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Ptasznik extends ObjectPlusPlus implements Serializable {
 
@@ -13,8 +10,10 @@ public class Ptasznik extends ObjectPlusPlus implements Serializable {
     private int numerWylinki;                                                            //nie mniejszy niż 0 następny musi być większy 
     private ArrayList<LocalDate> karmienia = new ArrayList<>();
 
-    public Ptasznik(String identyfikator, String nazwa, int numerWylinki) {
-        this.identyfikator = identyfikator;
+    private static Set<String> identyfikatory = new TreeSet<>(); // do unique
+
+    public Ptasznik(String identyfikator, String nazwa, int numerWylinki) throws Exception {
+        setIdentyfikator(identyfikator);
         this.nazwa = nazwa;
         this.numerWylinki = numerWylinki;
     }
@@ -23,8 +22,13 @@ public class Ptasznik extends ObjectPlusPlus implements Serializable {
         return identyfikator;
     }
 
-    public void setIdentyfikator(String identyfikator) {
-        this.identyfikator = identyfikator;
+    public void setIdentyfikator(String identyfikator) throws Exception {
+        if(Ptasznik.identyfikatory.contains(identyfikator)) {
+            throw new Exception("Identyfikator musi być unikalny. \nPodany identyfikator:  -  " + identyfikator + "  -   już istnieje w systemie");
+        } else {
+            this.identyfikator = identyfikator;
+            Ptasznik.identyfikatory.add(identyfikator);
+        }
     }
 
     public String getNazwa() {
