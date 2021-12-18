@@ -3,11 +3,11 @@ import java.time.LocalDate;
 public class Cerytfikat {
 
     private String nazwaCertyfikatu;
-    private LocalDate date;
+    private int rokWydania;
 
-    public Cerytfikat(String nazwaCertyfikatu, LocalDate date) {
+    public Cerytfikat(String nazwaCertyfikatu, int rokWydania) {
         this.nazwaCertyfikatu = nazwaCertyfikatu;
-        this.date = date;
+        this.rokWydania = rokWydania;
     }
 
     public String getNazwaCertyfikatu() {
@@ -18,19 +18,19 @@ public class Cerytfikat {
         this.nazwaCertyfikatu = nazwaCertyfikatu;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public int getRokWydania() {
+        return rokWydania;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setRokWydania(int rokWydania) {
+        this.rokWydania = rokWydania;
     }
 
     @Override
     public String toString() {
         return "Cerytfikat{" +
                 "nazwaCertyfikatu='" + nazwaCertyfikatu + '\'' +
-                ", date=" + date +
+                ", date=" + rokWydania +
                 '}';
     }
 

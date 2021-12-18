@@ -94,7 +94,9 @@ Projekt MP4 - Ograniczenia
                 "nadać mu te role dla ptasznika p2 otrzymujemy exception, gdyż nie jest\n" +
                 "on jego opiekunem.");
 
-        Hodowca h1 = new Hodowca("Jan", "Kowalski", 34);
+
+        Cerytfikat c1 = new Cerytfikat("Nazwa certyfikatu", 2021 );
+        Hodowca h1 = new Hodowca("Jan", "Kowalski", 34, c1);
         wstawEntery(1);
         try {
             h1.addLink("Opiekun", "Ptasznik", p1);
@@ -112,6 +114,40 @@ Projekt MP4 - Ograniczenia
         } catch (Exception e) {
             przechwycWyjatek(e);
         }
+
+
+
+
+
+
+    /*
+       Ograniczenie Własne - Rok wydania certyfikatu
+       Aby stworzyć hodowce potrzba podać jego certyfikat.
+       Jednak zleceniodawca systemu zastrzegł, że nie chce
+       mieć sytuacji, w której zarejestruje hodowce, który
+       uzyskał certyfikat przed 2020 rokiem ze względu na
+       znaczące różnice w zakresie tegoż certyfikatu.
+    */
+
+        wstawEntery(1, "Ograniczenie Własne - Rok wydania certyfikatu\n\n" +
+                "Aby stworzyć hodowce potrzba podać jego certyfikat.\n" +
+                "Jednak zleceniodawca systemu zastrzegł, że nie chce \n" +
+                "mieć sytuacji, w której zarejestruje hodowce, który\n" +
+                "uzyskał certyfikat przed 2020 rokiem ze względu na \n" +
+                "znaczące różnice w zakresie tegoż certyfikatu. ");
+
+
+        Cerytfikat c2 = new Cerytfikat("Certyfikat wiedzy w zakresie terrarystyki", 2021 );
+        Cerytfikat c3 = new Cerytfikat("Certyfikat wiedzy w zakresie ptaszników", 2018);
+        System.out.println(c2);
+        try {
+
+            Hodowca h2 = new Hodowca("Marzena", "Sawicka", 34, c3);
+        } catch (Exception e) {
+            przechwycWyjatek(e);
+        }
+
+
         /*
         //Trwałość ekstensji - odczyt z pliku
         try {
