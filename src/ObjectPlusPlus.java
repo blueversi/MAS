@@ -107,5 +107,12 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         return objectLink.containsValue(targetObject);
     }
 
+    public boolean anyLink(String roleName) {
+        if(!links.containsKey(roleName)) {
+            return false;
+        }
 
+        Map<Object, ObjectPlusPlus> links = this.links.get(roleName);
+        return links.size() > 0;
+    }
 }

@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Terrarium extends ObjectPlusPlus implements Serializable {
+public class Terrarium extends ObjectPlus4 implements Serializable {
 
     private int x;
     private int y;

@@ -203,6 +203,34 @@ Projekt MP4 - Ograniczenia
             przechwycWyjatek(e);
         }
 
+    /*
+       Ograniczenie Xor - Ptasznik tylko w 1 pojemniku
+       Ptasznik fizycznie nie może mieszkać w dwóch pojemnikach
+       jednocześnie. Zatem jego domem może być tylko 1 z nich.
+       Jeśli mieszka już w pojemniku X to nie może zamieszkać
+       w pojemniku Y. Zrealizowane z pomocą klasy ObjectPlus4.
+    */
+
+        wstawEntery(1, "Ograniczenie Xor - Ptasznik tylko w 1 pojemniku\n\n" +
+                "Ptasznik fizycznie nie może mieszkać w dwóch pojemnikach\n" +
+                "jednocześnie. Zatem jego domem może być tylko 1 z nich.\n" +
+                "Jeśli mieszka już w pojemniku X to nie może zamieszkać\n" +
+                "w pojemniku Y. Zrealizowane z pomocą klasy ObjectPlus4.");
+
+        Paludarium pal1 = new Paludarium(p1, new Ryba("Bojownik"));
+        p1.addXorRole("Mieszka");
+        p1.addLinkXor("Mieszka", "Dom", pal1);
+
+        try {
+
+            p1.addLinkXor("Mieszka", "Dom", terrarium);
+        }catch (Exception e){
+            przechwycWyjatek(e);
+        }
+
+
+
+
 
         /*
         //Trwałość ekstensji - odczyt z pliku
