@@ -115,9 +115,36 @@ Projekt MP4 - Ograniczenia
             przechwycWyjatek(e);
         }
 
+    /*
+       Ograniczenie Ordered - Sortowanie ekstensji karmowki
+       Ekstensja karmowki musi byc posortowana alfabetycznie
+       po nazwie gatunkowej. Zrealizowane przy pomocy Collections.sort
+       i metody compare. Poza 1 instancją karaczana madagaskarskiego
+       i 1 karaczana argentyńskiego pozostałe są generowane losowo.
+    */
+
+        wstawEntery(1, "Ograniczenie Ordered - Sortowanie ekstensji karmowki\n\n" +
+                "Ekstensja karmowki musi byc posortowana alfabetycznie\n" +
+                "po nazwie gatunkowej. Zrealizowane przy pomocy Collections.sort\n" +
+                "i metody compare. Poza 1 instancją karaczana madagaskarskiego\n" +
+                "i 1 karaczana argentyńskiego pozostałe są generowane losowo.");
 
 
+        Karmowka k1 = new Karmowka("Karaczan Madagaskarski", "Imago");
+        Karmowka k2 = new Karmowka("Karaczan Argentynski", "Imago");
+        Karmowka k3 = Karmowka.generujLosowaKarmowke();
+        Karmowka k4 = Karmowka.generujLosowaKarmowke();
+        Karmowka k5 = Karmowka.generujLosowaKarmowke();
+        Karmowka k6 = Karmowka.generujLosowaKarmowke();
+        Karmowka k7 = Karmowka.generujLosowaKarmowke();
+        Karmowka k8 = Karmowka.generujLosowaKarmowke();
+        Karmowka k9 = Karmowka.generujLosowaKarmowke();
+        Karmowka k10 = Karmowka.generujLosowaKarmowke();
 
+        wstawEntery(1);
+        Karmowka.wyswietlKarmowke();
+
+//-------------------------------------------------
 
 
     /*

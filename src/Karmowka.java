@@ -1,7 +1,5 @@
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Karmowka extends ObjectPlusPlus implements Serializable {
 
@@ -33,7 +31,22 @@ public class Karmowka extends ObjectPlusPlus implements Serializable {
 
     //Podstawowa metoda wyświetla nam wszystie rodzaje karmowki
     public static void wyswietlKarmowke() throws Exception {
-        ObjectPlus.showExtent(Karmowka.class);
+        ArrayList<Karmowka> karmowki = new ArrayList<>();
+        for(Karmowka karmowka: ObjectPlus.getExtent(Karmowka.class)) {
+            karmowki.add(karmowka);
+        }
+        Collections.sort(karmowki, new Comparator<Karmowka>() {
+            @Override
+            public int compare(final Karmowka k1, final Karmowka k2) {
+                return k1.getNazwaGatunku().compareTo(k2.getNazwaGatunku());
+            }
+        });
+
+
+        System.out.println("Ekstensja klasy karmowka: ");
+        for(Karmowka karmowka: karmowki){
+            System.out.println(karmowka);
+        }
     }
 
     public static Karmowka generujLosowaKarmowke(){
@@ -50,6 +63,7 @@ public class Karmowka extends ObjectPlusPlus implements Serializable {
         nazwyGatunkowe.add("Mącznik Młynarek");
         nazwyGatunkowe.add("Drewnojad");
         nazwyGatunkowe.add("Szarańcza");
+        nazwyGatunkowe.add("Dubia");
         nazwyGatunkowe.add("Świerszcz Bananowy");
 
         nazwaGatunkuIndex = (int)(Math.random() * nazwyGatunkowe.size());
@@ -77,4 +91,5 @@ public class Karmowka extends ObjectPlusPlus implements Serializable {
                 ", stadiumRozwojowe='" + stadiumRozwojowe + '\'' +
                 '}';
     }
+
 }
