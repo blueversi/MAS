@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public class Ptasznik extends ObjectPlusPlus implements Serializable {
+public class Ptasznik extends ObjectPlus4 implements Serializable {
 
     private String identyfikator;
     private String nazwa;

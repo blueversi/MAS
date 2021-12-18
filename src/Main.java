@@ -11,7 +11,7 @@ Projekt MP4 - Ograniczenia
 
         Ptasznik p1 = new Ptasznik("PTSZ01", "Brachypelma Hamorii", 4);
     /*
-       Atrybut Dynamiczny Wylinka ptasznika
+       Ograniczenie Atrybut Dynamiczny Wylinka ptasznika
        Ptasznik wraz z czasem linieje,
        w systemie pamiętamy numer wylinki danego ptasznika jednak nie pozwalamy
        by był on mniejszy niż poprzedni gdyż jest to niemożliwe
@@ -29,7 +29,7 @@ Projekt MP4 - Ograniczenia
         }
 
     /*
-        Atrybut Statyczny rozmiar terrarium
+        Ograniczenie Atrybut Statyczny rozmiar terrarium
         Zakładamy, że ze względów zdrowia ptaszników, terrarium nie może być
         mniejsze niż nasze stałe wartości. W naszym przypadku tyczy się to
         x(szerokości), y(wysokości) oraz z(głębokości) i przyjmujemy te
@@ -51,14 +51,14 @@ Projekt MP4 - Ograniczenia
             przechwycWyjatek(e);
         }
     /*
-       Atrybut Unique - Identyfikator Ptasznika
+       Ograniczenie Unique - Identyfikator Ptasznika
        Każdy ptasznik musi mieć swój unikalny identyfikator. W tym celu
        stworzono atrybut klasowy typu SET przechowujący wszystkie
        identyfikatory obecnie istniejących w sytemie ptaszników.
        Próba utworzenia ptasznika z takim samym identyfikatorem
        lub nadanie takiego samego idntyfikatora spowoduje wyjątek.
     */
-        wstawEntery(1, "Atrybut Unique - Identyfikator Ptasznika\n" +
+        wstawEntery(1, "Atrybut Unique - Identyfikator Ptasznika\n\n" +
                 "Każdy ptasznik musi mieć swój unikalny identyfikator. W tym celu\n" +
                 "stworzono atrybut klasowy typu SET przechowujący wszystkie\n" +
                 "identyfikatory obecnie istniejących w sytemie ptaszników.\n" +
@@ -73,7 +73,45 @@ Projekt MP4 - Ograniczenia
             przechwycWyjatek(e);
         }
 
+    /*
+       Ograniczenie Subset
+       Aby hodowca mógł zajmować się rozmnażaniem ptasznika musi posiadać
+       rolę 'Rozmnaza" jednak aby mogl taką role otrzymać musi być najpierw
+       opiekunem zwierzęcia. Z pomocą klasy ObjectPlusPlus i ObjectPlus4
+       przed nadaniem roli "Rozmnaza" sprawdzamy czy dany hodowca jest
+       opiekunem ptasznika. W 1 przypadku udaje się dodać te role gdyż
+       Jan Kowalski opiekuje się ptasznikiem p1. Natomiast potem próbujemy
+       nadać mu te role dla ptasznika p2 otrzymujemy exception, gdyż nie jest
+       on jego opiekunem.
+    */
+        wstawEntery(1, "Ograniczenie Subset - Rozmnazac moze tylko Opiekun\n\n" +
+                "Aby hodowca mógł zajmować się rozmnażaniem ptasznika musi posiadać\n" +
+                "rolę 'Rozmnaza\" jednak aby mogl taką role otrzymać musi być najpierw\n" +
+                "opiekunem zwierzęcia. Z pomocą klasy ObjectPlusPlus i ObjectPlus4\n" +
+                "przed nadaniem roli \"Rozmnaza\" sprawdzamy czy dany hodowca jest \n" +
+                "opiekunem ptasznika. W 1 przypadku udaje się dodać te role gdyż\n" +
+                "Jan Kowalski opiekuje się ptasznikiem p1. Natomiast potem próbujemy\n" +
+                "nadać mu te role dla ptasznika p2 otrzymujemy exception, gdyż nie jest\n" +
+                "on jego opiekunem.");
 
+        Hodowca h1 = new Hodowca("Jan", "Kowalski", 34);
+        wstawEntery(1);
+        try {
+            h1.addLink("Opiekun", "Ptasznik", p1);
+
+            h1.addLink_subset("Rozmnaza", "Ptasznik", "Opiekun", p1);
+
+            // Show links info
+            h1.showLinks("Opiekun", System.out);
+            h1.showLinks("Rozmnaza", System.out);
+
+            //Odkomentowanie poniższej lini usunie exeption
+            //h1.addLink("Opiekun", "Ptasznik", p2);
+            h1.addLink_subset("Rozmnaża", "Ptasznik", "Opiekun", p2);
+
+        } catch (Exception e) {
+            przechwycWyjatek(e);
+        }
         /*
         //Trwałość ekstensji - odczyt z pliku
         try {

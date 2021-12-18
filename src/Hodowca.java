@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hodowca extends ObjectPlusPlus implements Serializable {
+public class Hodowca extends ObjectPlus4 implements Serializable {
 
     private String imie;
     private String nazwisko;
