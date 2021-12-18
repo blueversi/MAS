@@ -8,59 +8,43 @@ import java.util.Random;
 
 public class Ptasznik extends ObjectPlusPlus implements Serializable {
 
-    public static String rodzina = "Ptasznikowate"; // Atrybut klasowy wspólny dla wszystkich instancji - każdy ptasznik należy do rodziny ptasznikowatych
-    private String rodzaj;
-    private String gatunek;
-    private LocalDate dataUrodzenia;
+    private String identyfikator;
+    private String nazwa;
     private int numerWylinki;                                                            //nie mniejszy niż 0 następny musi być większy 
     private ArrayList<LocalDate> karmienia = new ArrayList<>();
 
-    public Ptasznik(String rodzaj, String gatunek, LocalDate dataUrodzenia, int numerWylinki, ArrayList<LocalDate> karmienia) {
-        this.rodzaj = rodzaj;
-        this.gatunek = gatunek;
-        this.dataUrodzenia = dataUrodzenia;
+    public Ptasznik(String identyfikator, String nazwa, int numerWylinki) {
+        this.identyfikator = identyfikator;
+        this.nazwa = nazwa;
         this.numerWylinki = numerWylinki;
-        this.karmienia = karmienia;
     }
 
-    public static String getRodzina() {
-        return rodzina;
+    public String getIdentyfikator() {
+        return identyfikator;
     }
 
-    public static void setRodzina(String rodzina) {
-        Ptasznik.rodzina = rodzina;
+    public void setIdentyfikator(String identyfikator) {
+        this.identyfikator = identyfikator;
     }
 
-    public String getRodzaj() {
-        return rodzaj;
+    public String getNazwa() {
+        return nazwa;
     }
 
-    public void setRodzaj(String rodzaj) {
-        this.rodzaj = rodzaj;
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
     }
 
-    public String getGatunek() {
-        return gatunek;
-    }
-
-    public void setGatunek(String gatunek) {
-        this.gatunek = gatunek;
-    }
-
-    public LocalDate getDataUrodzenia() {
-        return dataUrodzenia;
-    }
-
-    public void setDataUrodzenia(LocalDate dataUrodzenia) {
-        this.dataUrodzenia = dataUrodzenia;
-    }
-
-    public int getNumerWylinki() {
+    public int getNumerWylinki()  {
         return numerWylinki;
     }
 
-    public void setNumerWylinki(int numerWylinki) {
-        this.numerWylinki = numerWylinki;
+    public void setNumerWylinki(int numerWylinki) throws Exception {
+        if(numerWylinki > this.numerWylinki){
+            this.numerWylinki = numerWylinki;
+        } else {
+            throw new Exception("Numer wylinki nie może być mniejszy niż obecna. \n" + "Obecna wylinka: " +this.numerWylinki + "\n" + "Podana wylinka: " + numerWylinki);
+        }
     }
 
     public ArrayList<LocalDate> getKarmienia() {
@@ -74,12 +58,17 @@ public class Ptasznik extends ObjectPlusPlus implements Serializable {
     @Override
     public String toString() {
         return "Ptasznik{" +
-                "rodzaj='" + rodzaj + '\'' +
-                ", gatunek='" + gatunek + '\'' +
-                ", dataUrodzenia=" + dataUrodzenia +
+                "identyfikator='" + identyfikator + '\'' +
+                ", nazwa='" + nazwa + '\'' +
                 ", numerWylinki=" + numerWylinki +
                 ", karmienia=" + karmienia +
                 '}';
+    }
+
+
+    //ekstensja
+    public static void wyswietlPtaszniki() throws Exception {
+        ObjectPlus.showExtent(Ptasznik.class);
     }
 }
     

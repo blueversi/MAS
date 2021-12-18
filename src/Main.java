@@ -12,7 +12,18 @@ Projekt MP4 - Ograniczenia
  */
     public static void main(String args[]) throws Exception {
 
-
+        Ptasznik p1 = new Ptasznik("PTSZ01", "Brachypelma Hamorii", 4);
+        p1.setNumerWylinki(5);
+        System.out.println(p1);
+        try {
+            p1.setNumerWylinki(4);
+        } catch (Exception e) {
+            wstawEntery(1, "-----------------------");
+            wstawEntery(1,"Przechywcono wyjątek o następującej treści: ");
+            wstawEntery(1);
+            System.out.println(e);
+            wstawEntery(1, "-----------------------");
+        }
 
 
         /*
