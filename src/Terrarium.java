@@ -1,75 +1,57 @@
-public class Terrarium extends Pojemnik implements ITerrarium {
+import java.io.Serializable;
 
-    private int iloscTorfuWLitrach;
-    private String typKlimatycnzy;
-    private String typWystroju;
-    private Ptasznik ptasznik;
+public class Terrarium extends ObjectPlusPlus implements Serializable {
 
-    public Terrarium(int bokA, int bokB, int wysokosc, int iloscTorfuWLitrach, String typKlimatycnzy, String typWystroju) {
+    private int x;
+    private int y;
+    private int z;
 
-        super(bokA, bokB, wysokosc);
+    private static final int minX = 10;
+    private static final int minY = 10;
+    private static final int minZ = 15;
 
-        this.iloscTorfuWLitrach = iloscTorfuWLitrach;
-        this.typKlimatycnzy = typKlimatycnzy;
-        this.typWystroju = typWystroju;
-
+    public Terrarium(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    @Override
-    public double getProcentZapelnienia() {
-        return ( this.iloscTorfuWLitrach/this.objetosc);
+    public int getX() {
+        return x;
     }
 
-    public Ptasznik getPtasznik() {
-        return ptasznik;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    @Override
-    public String getTypKlimatyczny() {
-        return this.typKlimatycnzy;
+    public int getY() {
+        return y;
     }
 
-    @Override
-    public String getTypWstroju() {
-        return this.typWystroju;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public int getIloscTorfuWLitrach() {
-        return iloscTorfuWLitrach;
+    public int getZ() {
+        return z;
     }
 
-    @Override
-    public void umiescPtasznika(Ptasznik ptasnzik) {
-        this.ptasznik = ptasnzik;
-    }
-
-    public void setIloscTorfuWLitrach(int iloscTorfuWLitrach) throws Exception {
-        if(this.iloscTorfuWLitrach < objetosc) {
-            this.iloscTorfuWLitrach = iloscTorfuWLitrach;
-        } else {
-            throw new Exception("Nie można umieścić więcej torfu niż wynosi objętość Terrarmium");
-        }
-    }
-
-    public void setTypKlimatycnzy(String typKlimatycnzy) {
-        this.typKlimatycnzy = typKlimatycnzy;
-    }
-
-    public void setTypWystroju(String typWystroju) {
-        this.typWystroju = typWystroju;
+    public void setZ(int z) {
+        this.z = z;
     }
 
     @Override
     public String toString() {
         return "Terrarium{" +
-                "bokA=" + bokA +
-                ", bokB=" + bokB +
-                ", wysokosc=" + wysokosc +
-                ", objetosc=" + objetosc +
-                ", iloscTorfuWLitrach=" + iloscTorfuWLitrach +
-                ", typKlimatycnzy='" + typKlimatycnzy + '\'' +
-                ", typWystroju='" + typWystroju + '\'' +
-                ", ptasznik=" + ptasznik +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
                 '}';
+    }
+
+
+    //ekstensja
+    public static void wyswietlTerraria() throws Exception {
+        ObjectPlus.showExtent(Terrarium.class);
     }
 }
